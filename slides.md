@@ -1,6 +1,6 @@
 ---
 theme: default
-title: Stacked Diffs/PRs
+title: The stacking workflow
 info: Ship Faster, Review Better
 class: text-center
 drawings:
@@ -9,13 +9,11 @@ transition: slide-left
 mdc: true
 ---
 
-# Stacked Diffs/PRs
+# The stacking workflow
 
 ## Ship Faster, Review Better
 
 ---
-
-# Ship Faster, Review Better
 
 <div class="flex justify-center">
   <img src="/images/code-review-tweet.png" class="h-60 rounded shadow" />
@@ -27,10 +25,23 @@ mdc: true
 
 <v-clicks>
 
-- 1000+ line PRs sit in review for **days**
+- Large PRs sit in review for **days** or even [years](https://github.com/matplotlib/matplotlib/pull/9598#issuecomment-2037292898)
 - Reviewers skim instead of reading
 - Merge conflicts compound over time
 - "LGTM" becomes a rubber stamp
+
+</v-clicks>
+
+---
+
+# The Ideal PR Size
+
+<v-clicks>
+
+- **~50 lines** — the sweet spot, reviewed & merged ~40% faster than 250-line PRs
+- **< 200 lines** — practical target most teams aim for
+- **> 400 lines** — widely considered too large
+- **< 25 lines** — higher revert rate (too small can lack context)
 
 </v-clicks>
 
@@ -40,6 +51,7 @@ mdc: true
 
 Break one large feature into small, dependent PRs
 
+<v-clicks>
 ```
 main
  └── PR 1: Add experiment config       (12 lines)
@@ -48,6 +60,7 @@ main
 ```
 
 Each PR has a **single purpose** and is **small enough to review in short time**.
+</v-clicks>
 
 ---
 
@@ -89,28 +102,64 @@ Each PR has a **single purpose** and is **small enough to review in short time**
 
 # Git Town Commands
 
+<div class="command-list">
+<v-clicks>
+
 ```bash
 # Branch off main
-git town hack feature-a
+git town hack BIG-1023-setup_split_experiment
+```
 
-# Stack a child branch
-git town append feature-b
-
-# Sync entire stack
-git town sync --stack
-
+```bash
 # Push + open PR with correct base
 git town propose
+```
 
+```bash
+# Stack a child branch
+git town append BIG-1023-add_tracking_events
+```
+
+```bash
+# Sync entire stack
+git town sync --stack
+```
+
+```bash
 # Navigate the stack
 git town up / git town down / git town switch
 ```
+
+<span class="!hidden"></span>
+
+</v-clicks>
+</div>
+
+<style>
+.command-list .slidev-vclick-target {
+  transition: opacity 0.3s ease;
+}
+.command-list .slidev-vclick-hidden {
+  opacity: 0.2 !important;
+}
+.command-list:not(:has(.slidev-vclick-hidden)) .slidev-vclick-target {
+  opacity: 1 !important;
+}
+.command-list .slidev-vclick-prior {
+  opacity: 0.2 !important;
+}
+.command-list .slidev-vclick-current {
+  opacity: 1 !important;
+}
+</style>
 
 ---
 
 # The Missing Piece
 
 ### Stack Visualization in PRs
+
+<v-clicks>
 
 GitHub Action: [**git-town/action**](https://github.com/git-town/action)
 
@@ -131,6 +180,8 @@ jobs:
 
 Reads PR base branches — no local config needed.
 
+</v-clicks>
+
 ---
 
 # Stack Visualization in Action
@@ -140,31 +191,7 @@ Reads PR base branches — no local config needed.
   <img src="/images/stack-viz-2.png" class="max-w-[45%] rounded shadow" />
 </div>
 
----
-
-# My Workflow
-
-```bash
-# PR 1: branch off main
-git town hack setup-split
-git town propose
-
-# PR 2: stack on top
-git town append secondary-nav
-git town propose
-
-# PR 3: stack another
-git town append tracking-events
-git town propose
-
-# Rebase all after changes
-git town sync --stack
-```
-
----
-layout: center
-class: text-center
----
+--- 
 
 # Questions?
 
