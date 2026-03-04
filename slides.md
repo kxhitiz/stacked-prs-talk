@@ -45,6 +45,8 @@ mdc: true
 
 </v-clicks>
 
+<p class="text-xs op-50 mt-4">Source: <a href="https://graphite.com/blog/the-ideal-pr-is-50-lines-long">graphite.com — The ideal PR is 50 lines long</a></p>
+
 ---
 
 # What Are Stacked PRs?
@@ -78,7 +80,7 @@ Each PR has a **single purpose** and is **small enough to review in short time**
 
 # Tools I Tried
 
-| | Graphite | Machete | Git Town |
+| | [Graphite](https://graphite.dev) | [Machete](https://github.com/VirtusLab/git-machete) | [Git Town](https://www.git-town.com) |
 |---|---|---|---|
 | Type | SaaS + CLI | CLI only | CLI only |
 | Cost | Free / Paid | Free (OSS) | Free (OSS) |
@@ -104,6 +106,11 @@ Each PR has a **single purpose** and is **small enough to review in short time**
 
 <div class="command-list">
 <v-clicks>
+
+```bash
+# Initialize Git Town in your repo
+git town init
+```
 
 ```bash
 # Branch off main
